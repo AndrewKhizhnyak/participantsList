@@ -3,7 +3,7 @@
     <img alt="avatar" :src="participant.avatar" />
     <div>{{ participant.fullName }}</div>
     <div>{{ participant.email }}</div>
-    <span>{{ getSignUpDate(participant.signUp) }} days ago</span>
+    <span>{{ signUp }} days ago</span>
   </section>
 </template>
 
@@ -11,10 +11,13 @@
 export default {
   name: "Participant",
   props: ["participant"],
-  methods: {
-    getSignUpDate(date) {
-      return new Date(date).getUTCDay();
-    },
+  data() {
+    return {
+      signUp: "",
+    };
+  },
+  mounted() {
+    this.signUp = new Date(this.participant.signUp).getUTCDay();
   },
 };
 </script>
