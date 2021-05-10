@@ -12,6 +12,10 @@
         <Participant :participant="participant" />
       </div>
     </div>
+
+    <footer v-if="participantList.length === 20">
+      <img src="@/assets/tick.svg" alt="tick" /><span>All users loaded</span>
+    </footer>
   </section>
 </template>
 
@@ -50,12 +54,27 @@ header {
   line-height: 24px;
   padding: 0 68px;
 }
-span {
+header span {
   width: 80px;
 }
-span:not(:first-child) {
+header span:not(:first-child) {
   margin-left: 210px;
 }
+footer {
+  background: #edf9f2;
+  border-radius: 67px;
+  color: #219653;
+  height: 72px;
+  line-height: 72px;
+  margin: 42px auto;
+  text-align: center;
+  width: 694px;
+}
+footer span {
+  font-size: 20px;
+  margin-left: 18px;
+}
+
 .loader,
 .loader:before,
 .loader:after {
