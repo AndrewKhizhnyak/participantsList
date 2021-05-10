@@ -11,7 +11,6 @@ git init
 git add -A
 git commit -m 'deploy'
 
-
-git push -f git@github.com:andrewkhizhnyak/participantsList.git main:gh-pages
+git push -f git@github.com:andrewkhizhnyak/participantsList.git master:gh-pages
 
 cd -
