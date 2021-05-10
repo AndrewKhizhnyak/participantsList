@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { getParticipantList } from "@/api/actions";
+import { getParticipantList } from "@/utils/api";
 import Participant from "./Participant";
 
 export default {
