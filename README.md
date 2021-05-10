@@ -15,5 +15,11 @@ yarn serve
 ### Design
 
 ```
-https://cutt.ly/BbAk90u
+cutt.ly/BbAk90u
+```
+
+### Demo
+
+```
+andrewkhizhnyak.github.io/participantsList
 ```
