@@ -13,7 +13,9 @@
       </div>
     </div>
 
-    <footer v-if="participantList.length === 20">
+    <div v-show="scrolledToBottom" class="loader" />
+
+    <footer v-if="participantList.length >= 50">
       <img src="@/assets/tick.svg" alt="tick" /><span>All users loaded</span>
     </footer>
   </section>
@@ -34,11 +36,44 @@ export default {
         { id: 0, avatar: "", fullName: "", email: "", signUp: "" },
       ],
       fetching: true,
+      scrolledToBottom: false,
     };
   },
+  watch: {
+    scrolledToBottom(newValue) {
+      if (newValue) {
+        this.getMoreParticipants();
+      }
+    },
+  },
   async mounted() {
+    this.scroll();
     this.participantList = await getParticipantList();
     this.fetching = false;
+  },
+  methods: {
+    scroll() {
+      window.onscroll = () => {
+        let bottomOfWindow =
+          Math.max(
+            window.pageYOffset,
+            document.documentElement.scrollTop,
+            document.body.scrollTop
+          ) +
+            window.innerHeight ===
+          document.documentElement.offsetHeight;
+
+        if (bottomOfWindow && this.participantList.length < 50) {
+          this.scrolledToBottom = true;
+        }
+      };
+    },
+    async getMoreParticipants() {
+      const newParticipants = await getParticipantList();
+      this.participantList = [...this.participantList, ...newParticipants];
+      this.scrolledToBottom = false;
+      this.scroll();
+    },
   },
 };
 </script>
